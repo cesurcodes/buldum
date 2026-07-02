@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCart } from "./CartContext";
 
 export default function Header() {
@@ -8,7 +9,6 @@ export default function Header() {
   return (
     <header className="bg-white border-b shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between p-5">
-
         <h1 className="text-3xl font-black text-orange-500 cursor-pointer">
           BULDUM
         </h1>
@@ -20,7 +20,6 @@ export default function Header() {
         />
 
         <div className="flex items-center gap-5 font-semibold">
-
           <button className="hover:text-orange-500 transition">
             👤 Giriş Yap
           </button>
@@ -29,7 +28,10 @@ export default function Header() {
             ❤️ Favoriler
           </button>
 
-          <button className="relative hover:text-orange-500 transition">
+          <Link
+            href="/cart"
+            className="relative hover:text-orange-500 transition"
+          >
             🛒 Sepet
 
             {cartCount > 0 && (
@@ -37,10 +39,8 @@ export default function Header() {
                 {cartCount}
               </span>
             )}
-          </button>
-
+          </Link>
         </div>
-
       </div>
     </header>
   );

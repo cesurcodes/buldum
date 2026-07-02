@@ -23,15 +23,14 @@ export default function ProductCard({
           src={image}
           alt={name}
           fill
+          sizes="(max-width: 768px) 100vw, 25vw"
           className="object-cover transition duration-300 hover:scale-110"
         />
       </div>
 
       <h3 className="mt-4 font-bold">{name}</h3>
 
-      <p className="mt-2 text-xl font-black text-orange-600">
-        {price}
-      </p>
+      <p className="mt-2 text-xl font-black text-orange-600">{price}</p>
 
       <button
         onClick={() => addToCart({ name, price, image })}
