@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "./CartContext";
+import { useFavorites } from "./FavoritesContext";
 
 type ProductCardProps = {
   name: string;
@@ -25,12 +26,18 @@ function createSlug(text: string) {
 
 export default function ProductCard({ name, price, image }: ProductCardProps) {
   const { addToCart } = useCart();
+  const { toggleFavorite, isFavorite } = useFavorites();
+
   const slug = createSlug(name);
+  const favorite = isFavorite(name);
 
   return (
     <div className="group relative rounded-3xl bg-white p-4 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
-      <button className="absolute right-6 top-6 z-10 rounded-full bg-white p-2 shadow">
-        🤍
+      <button
+        onClick={() => toggleFavorite({ name, price, image })}
+        className="absolute right-6 top-6 z-10 rounded-full bg-white p-2 shadow"
+      >
+        {favorite ? "❤️" : "🤍"}
       </button>
 
       <span className="absolute left-6 top-6 z-10 rounded-full bg-orange-500 px-3 py-1 text-xs font-bold text-white">
